@@ -1,0 +1,4 @@
+1) Error: /var/lib/postgresql/12/main is not accessible or does not exist из-за того что не нашел фалы с бд
+2) Получилось, postgres увидел каталог с данными , при запросе отдал табличку.
+
+Имя проекта postgres2045
