@@ -1,0 +1,16 @@
+0) Открываю SHELL GCP 1
+1) Выполнил установку docker по интсрукции  https://docs.docker.com/engine/install/ubuntu/
+2) создал сеть sudo docker network create pg-net
+3) создаю каталог /var/lib/postgres
+4) При запуске кроме указания сети подключаю через volume каталог /var/lib/postgres к /var/lib/postgresql/data в контйнере команда
+ sudo docker run --name pg-docker --network pg-net -e POSTGRES_PASSWORD=postgres -d -p 5432:5432 -v /var/lib/postgres:/var/lib/postgresql/data postgres:14
+5) В SHELL GCP открывается консоль со входом в запущенный образ
+6) Запускаю новую оболочку SHELL GCP 2
+7) ставлю и захожу в образ клиента
+sudo docker run -it --rm --network pg-net --name pg-client postgres:14 psql -h pg-docker -U postgres
+8) Создаю тестовую таблицу
+9) Перехожу в SHELL GCP 1 просматриваю таблицу
+10) удаляю контейнер  запущеный в SHELL GCP 1
+11) запускаю снова контейнер  sudo docker run --name pg-docker --network pg-net -e POSTGRES_PASSWORD=postgres -d -p 5432:5432 -v /var/lib/postgres:/var/lib/postgresql/data postgres:14
+12) Перехожу в SHELL GCP 2
+13) успешно просматриваю ранее созданную таблицу, так как данные находились вне файлового пространства докер, а в пространсве vm /var/lib/postgres
